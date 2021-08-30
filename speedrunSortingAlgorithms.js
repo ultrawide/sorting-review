@@ -1,6 +1,6 @@
 // The merge sort algorithm operates by dividing the array into two equal chunks.
 // Each chunk is further split into two more halves until it reaches the base case - there are no elements to split up.
-// In such an event, we will sort the elements
+// In such an event, we will recursively sort the elements and combine the chunks.
 function mergeSort(array) {
     if (array.length <= 1)
         return array;

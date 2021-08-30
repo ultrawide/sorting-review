@@ -1,6 +1,6 @@
-// The merge sort algorithm operates by dividing the array into two equal chunks.
+// The merge sort algorithm operates by dividing the array into two chunks of ~equivalent length.
 // Each chunk is further split into two more halves until it reaches the base case - there are no elements to split up.
-// In such an event, we will recursively sort the elements and combine the chunks.
+// When the base case is reached, the array is in its smallest size and are combined together again in an ascending order.
 function mergeSort(array) {
     if (array.length <= 1)
         return array;
@@ -13,6 +13,23 @@ function mergeSort(array) {
     return sort(mergeSort(leftArray), mergeSort(rightArray));
 }
 
+function sort(leftArray, rightArray) {
+    let result = [];
+    let leftIndex = 0;
+    let rightIndex = 0;
+
+    while (leftIndex < leftArray.length && rightIndex < rightArray.length) {
+        if (leftArray[leftIndex] < rightArray[rightIndex])
+            result.push(leftArray[leftIndex++]);
+        else
+            result.push(rightArray[rightIndex++]);
+    }
+
+    return result.concat(leftArray.slice(leftIndex), rightArray.slice(rightIndex));
+}
+
+// The quicksort operates in similar fashion to the merge sort, but is easier to implement. 
+// It behaves similar to the merge sort where it continuously divides the array into smaller elements.
 function quickSort(array) {
     if (array.length <= 1)
         return array;
@@ -40,21 +57,6 @@ function quickSort(array) {
     }
 
     return [...quickSort(smallerThan), array[pivot], ...quickSort(greaterThan)];
-}
-
-function sort(leftArray, rightArray) {
-    let result = [];
-    let leftIndex = 0;
-    let rightIndex = 0;
-
-    while (leftIndex < leftArray.length && rightIndex < rightArray.length) {
-        if (leftArray[leftIndex] < rightArray[rightIndex])
-            result.push(leftArray[leftIndex++]);
-        else
-            result.push(rightArray[rightIndex++]);
-    }
-
-    return result.concat(leftArray.slice(leftIndex), rightArray.slice(rightIndex));
 }
 
 console.log(mergeSort([9, 2, 32, 8, -1, -4, 0, 3, 5, 6]));

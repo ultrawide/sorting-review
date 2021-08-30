@@ -36,6 +36,9 @@ function quickSort(array) {
 
     let pivot = Math.floor(array.length / 2);
 
+    // Can optimize further. In some cases, in certain application specific context, we can optimize the quick sort to exit early.
+    // Say we want to look for the smallest two values in the sorted array, we can exit early. We know that methods are evaluated left to right.
+    // Because of this, we know that the '...quickSort(smallerThan)' the initial call in the call stack will contain the smallest values.
     smallerThan = [];
     for (let i = 0; i < array.length; i++) {
         // skip the pivot
